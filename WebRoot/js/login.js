@@ -15,3 +15,7 @@ function Login(){
 //		}
 //	})
 }
+
+function registered(){
+	window.location.href="jsp/registered.jsp"
+}

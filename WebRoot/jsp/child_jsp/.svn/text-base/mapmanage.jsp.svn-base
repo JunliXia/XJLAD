@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'Login.jsp' starting page</title>
+    <title>My JSP 'group.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,23 +19,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-  	 <link rel="stylesheet" href="css/login.css" type="text/css"></link>
-     <script type="text/javascript" src="js/common/jq.js"></script>
-  	 <script type="text/javascript" src="js/login.js"></script>
+	<link rel="stylesheet" href="css/mapmanage.css" type="text/css"></link>
+	<script type="text/javascript" src="js/common/map.js"></script>	
+	<script type="text/javascript" src="js/mapmanage.js"></script>
   </head>
   
   <body>
-   	<div class="all">
-   	
-   		<div style="height:100px"></div>
-   		<div class="title">ASSECTS  ANALYSIS</div>
-   		<div class="login">
-   			<div class="name"><font>帐号：</font><input type="text"> </div>
-   			<div class="pass"><font>密码：</font><input type="password"> </div>
-   			<button onclick="Login()">登 入</button></br>
-   			<button onclick="registered()">注册</button>
+   <div class="memberlist">
+   		<div class="memberhead">员工列表</div>
+   		<div class="membermain">
+   			
    		</div>
-   		
-   	</div>
+    </div>
+    <div class="bussinessbooks" id="allmap" >
+ 
+    </div>
   </body>
 </html>
