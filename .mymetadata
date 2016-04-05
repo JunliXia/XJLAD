@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="AssectsAnalysis"
+  id="myeclipse.1459838787149"
+  context-root="/AssectsAnalysis"
+  j2ee-spec="5.0"
+  archive="AssectsAnalysis.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
