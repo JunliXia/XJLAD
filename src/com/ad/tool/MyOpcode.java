@@ -11,7 +11,7 @@ public class MyOpcode {
 		public static final String LIST = "list";				//表示列表
 		public static final String TYPE = "type";				//类型
 		public static final String CHECK="check";				//结果
-		
+		public static final String PAGE="page";					//页数
 		
 		
 //		// 登录

@@ -23,7 +23,7 @@
 		<property name="format_sql">true</property>
 
 		<mapping class="com.ad.entity.CEntityUser" />
-	
+		<mapping class="com.ad.entity.CEntityFund" />
 	</session-factory>
 
 </hibernate-configuration>

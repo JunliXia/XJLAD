@@ -8,7 +8,7 @@ function Login(){
 		UserPassword:UserPassword,
 	},function(outjson){
 		if(outjson.check==true){
-			window.location.href="jsp/main.jsp"
+			window.location.href="jsp/main.jsp?UserAccount="+outjson.UserAccount+"&UserId="+outjson.UserId+"&UserName="+outjson.UserName+""
 
 		}else if(outjson.check==false){
 		    alert("账号密码不正确");

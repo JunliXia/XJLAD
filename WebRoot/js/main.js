@@ -1,111 +1,15 @@
+
 $(document).ready(function() {
 	
-	changecolors("#userbit");
-	touser();
 	
-	clientpoint();
-	missionpoint();
-	visitpoint();
-	bussinesspoint();
+	changecolors("#userbit");
+	tofund();
+	
+
+
+	
 }) ;
 
-
-var hasbussinessnocheck=false;
-function bussinesspoint() {
-	var bussinessclient=0;
-	$.getJSON("./WCheckHasNoDealBussinessServlet",function(outjson){
-		if(outjson.check){
-			hasbussinessnocheck=true;
-			$("#bussinesspoint").css("display","block");
-			$("#bussinesspoint").css("margin-left","90px");
-			$("#bussinesspoint").css("margin-top","-12px");
-
-		}else{
-			hasbussinessnocheck=false;
-			$("#bussinesspoint").css("display","none");
-		}
-	
-	});
-	if(bussinessclient!=100000){
-		setTimeout(bussinesspoint, 5000);
-	}
-
-	
-}
-
-
-var hasvisitnocheck=false;
-function visitpoint() {
-	var visitclient=0;
-	
-	$.getJSON("./WCheckHasNoDealVisitPlanServlet",function(outjson){
-		if(outjson.check){
-			hasvisitnocheck=true;
-			$("#visitpoint").css("display","block");
-			$("#visitpoint").css("margin-left","90px");
-			$("#visitpoint").css("margin-top","-12px");
-
-		}else{
-			hasvisitnocheck=false;
-			$("#visitpoint").css("display","none");
-		}
-	
-	});
-	if(visitclient!=100000){
-		setTimeout(visitpoint, 5000);
-	}
-
-	
-}
-
-
-
-var hasclientnocheck=false;
-function clientpoint() {
-	var clientcount=0;
-//	clientcount++;
-	$.getJSON("./WCheckHasNoCheckClientServlet",function(outjson){
-			if(outjson.check){
-				hasclientnocheck=true;
-				$("#clientpoint").css("display","block");
-				$("#clientpoint").css("margin-left","90px");
-				$("#clientpoint").css("margin-top","-12px");
-
-			}else{
-				hasclientnocheck=false;
-				$("#clientpoint").css("display","none");
-			}
-		
-		});
-	if(clientcount!=100000){
-		setTimeout(clientpoint, 5000);
-	}
-
-}
-
-
-var hasmissionnodeal=false;
-function missionpoint() {
-	var missioncount=0;
-//	clientcount++;
-	$.getJSON("./WCheckHasNoDealMissionServlet",function(outjson){
-			if(outjson.check){
-				hasmissionnodeal=true;
-				$("#missionpoint").css("display","block");
-				$("#missionpoint").css("margin-left","90px");
-				$("#missionpoint").css("margin-top","-12px");
-
-			}else{
-				hasmissionnodeal=false;
-				$("#missionpoint").css("display","none");
-			}
-		
-		});
-	if(missioncount!=100000){
-		setTimeout(missionpoint, 5500);
-	}
-
-}
 
 
 
@@ -118,6 +22,15 @@ function loginout() {
 function changecolors(x) {
 	$(".left_list div").attr("class","one");
 	  $(x).attr("class","two");
+}
+
+function tofund() {
+	$(".fund").hide();
+	if($(".fund").html()==""){
+	$(".fund").load("jsp/child_jsp/fund.jsp");}
+	else{
+	}
+	$(".fund").show();
 }
 
 function tobussiness() {

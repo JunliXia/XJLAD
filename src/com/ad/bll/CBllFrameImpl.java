@@ -1,10 +1,13 @@
 package com.ad.bll;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
 
+import com.ad.entity.CEntityFund;
 import com.ad.entity.CEntityUser;
 
 
@@ -46,4 +49,52 @@ public class CBllFrameImpl implements IBllFrame{
 		boolean bisLogin=cBllUser.loginUser(cEntityUser);
 		return bisLogin;
 	}
+	
+	/**
+	 * 序号：usermodule:3
+	 * 功能：根据用户账号获取用户详细信息
+	 * 参数：CEntityUser(UserAccount)
+	 * 返回值:CEntityUser
+	 */
+	public CEntityUser getUserInfo(CEntityUser cEntityUser){
+		CEntityUser findResult=cBllUser.getUserInfo(cEntityUser);
+		return findResult;
+	}
+	
+	
+	
+
+	/*
+	 *------------------------------ 基金模块 fundmodule----------------------------
+	 */
+	private CBllFund cBllFund;
+	
+	@Resource(name="cBllFund")
+	public void setcBllFund(CBllFund cBllFund) {
+		this.cBllFund = cBllFund;
+	}
+
+
+	/**
+	 * 序号：fundmodule:1 
+	 * 功能：创建基金
+	 * 参数：CEntityFund(*)
+	 * 返回值:boolean
+	 */
+	public boolean saveFund(CEntityFund cEntityFund){
+		boolean bisSave=cBllFund.saveFund(cEntityFund);
+		return bisSave;
+	}
+	
+	/**
+	 * 序号：fundmodule:2 
+	 * 功能：获得用户基金
+	 * 参数：CEntityUser(UserId),page
+	 * 返回值:List<CEntityFund>
+	 */
+	public List<CEntityFund> getUserFund(CEntityUser cEntityUser,int page){
+		List<CEntityFund> findReuslt=cBllFund.getUserFund(cEntityUser, page);
+		return findReuslt;
+	}
+
 }

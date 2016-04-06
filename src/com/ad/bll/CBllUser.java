@@ -41,4 +41,16 @@ public class CBllUser {
 		boolean bisLogin=iDaoFrame.queryUserByUserAccountAndUserPassword(cEntityUser);
 		return bisLogin;
 	}
+	
+	/**
+	 * 序号：usermodule:3
+	 * 功能：根据用户账号获取用户详细信息
+	 * 参数：CEntityUser(UserAccount)
+	 * 返回值:CEntityUser
+	 */
+	public CEntityUser getUserInfo(CEntityUser cEntityUser){
+		CEntityUser findResutl=iDaoFrame.queryUserInfoByUserAccount(cEntityUser);
+		return findResutl;
+	}
+	
 }
