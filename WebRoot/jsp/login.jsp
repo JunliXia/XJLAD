@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<div style="height:100px"></div>
    		<div class="title">ASSECTS  ANALYSIS</div>
    		<div class="login">
-   			<div class="name"><font>帐号：</font><input type="text"> </div>
+   			<div class="account"><font>帐号：</font><input type="text"> </div>
    			<div class="pass"><font>密码：</font><input type="password"> </div>
    			<button onclick="Login()">登 入</button></br>
    			<button onclick="registered()">注册</button>
