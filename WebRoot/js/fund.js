@@ -21,10 +21,10 @@ $(document).ready(function() {
 	})
 	
 	
-		 //获得基金数
 	
 	
 	
+	//获得基金数
 	getFundNumber(FundStateBuy);
 
 	setTimeout(showmainfundtitle,500);
@@ -41,8 +41,6 @@ $(document).ready(function() {
 		}
 	})
 	
-//	showmainfundtitle();
-//	showfund(); 
 
 
 })
@@ -98,8 +96,8 @@ function fundPageOne(FundState) {
 					    '<th style="font-weight: normal">'+outjson[i].fundAmount+'</th>'+
 					    '<th style="font-weight: normal">'+outjson[i].fundShares+'</th>'+
 					    '<th style="font-weight: normal">'+outjson[i].fundNetValue+'</th>'+
-					    '<th style="font-weight: normal">'+outjson[i].fundBuyDate+'</th>'+
-					    '<th style="font-weight: normal">'+outjson[i].fundBuyFee+'</th>'+
+					    '<th style="font-weight: normal">'+outjson[i].fundSellAmount+'</th>'+
+        			    '<th style="font-weight: normal">'+outjson[i].fundSellNetValue+'</th>'+
 					    '<th style="font-weight: normal">'+outjson[i].fundProfitRate+'</th>'+
 					    '<th style="font-weight: normal">'+outjson[i].fundProfitAmount+'</th>'+
 					    '<th style="font-weight: normal">'+outjson[i].fundSellDate+'</th>'+
@@ -131,7 +129,7 @@ function showmainfundtitle() {
  			"<div  style=' margin-left:450px;margin-top:5px;'><font>欢迎"+UserName+"</font></div>"+
  			"<div id=attenss style='height:25px;width:400px;float:right;margin-top:-10px; margin-left:700px;'>" +
  			
- 			"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='updateclient()'>修改</div>"+
+ 				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='updateclient()'>修改</div>"+
 				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='seeclient()'>查看</div>"+
 				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='delclient()'>删除</div>"+
 				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='addfund()'>增加</div>"+
@@ -220,12 +218,55 @@ function addfundOk() {
 	})
 }
 
+function sellfundOk() {
+	var FundId=$("#fundId").val();
+	var FundShares=$("#fundsharesId").val();
+	var FundSellDate=$("#fundselldateId").val();
+	var FundSellNetValue=$("#fundsellnetvalueId").val();
+	var FundSellFee=$("#fundsellfeeId").val();
+	
+	$.getJSON("./WSellFund",{
+		FundId:FundId,
+		FundShares:FundShares,
+		FundSellDate:FundSellDate,
+		FundSellNetValue:FundSellNetValue,
+		FundSellFee:FundSellFee,
+	},function(outjson){
+		if(outjson.check){
+			alert("成功")
+		}else{
+			alert("失败")
+		}
+		closepage();
+		showback();
+	
+	})
+}
 
-
-
-
-function searchclient() {
-	alert("暂不开发");
+function sellfund() {
+	var x=curtab;
+	if(x==null){
+		alert("请选择要卖出的基金")
+	}else{
+		
+	$(".shadow").show();
+	$(".pagehead font").html("分配客户")
+	$(".showpage").css("width","280px");
+	$(".showpage").css("height","270px");
+	$(".showpage").css("margin-left","600px");
+	$(".pagemain").html("<div class=userset>"+
+  				"<div><a>基金号:</a><input id=fundId disabled='disabled' type='text' style='margin-left: 29px;'value='"+$(x).find("th").eq(0).html()+"' /></div>"+
+  				"<div><a>基金名:</a><input id=wtf disabled='disabled' type='text' style='margin-left: 29px;' value='"+$(x).find("th").eq(1).html()+"'/></div>"+
+  				"<div><a>基金代码：</a><input disabled='disabled' type='text' value='"+$(x).find("th").eq(2).html()+"'/></div>"+
+  				"<div><a>基金份额：</a><input id=fundsharesId disabled='disabled' type='text' value='"+$(x).find("th").eq(4).html()+"'/></div>"+
+  				"<div><a>卖出时间：</a><input class='inadress' id='fundselldateId' onclick=SelectDate(this,\'yyyy-MM-dd\') type='text'/></div>"+
+  				"<div><a>卖出净值：</a><input  type='text' id='fundsellnetvalueId'/></div>"+
+  				"<div><a>手续费用：</a><input  type='text' id='fundsellfeeId'/></div>"+
+  	  			
+  				"<div style='margin-left: 30px;margin-top: 10px;'><button onclick='sellfundOk()' class=but1>确定</button><button class=but1 onclick='closepage()'>取消</button></div>"+
+  				"</div>");
+	
+	}
 }
 
 
@@ -310,10 +351,6 @@ function showback() {
 }
 
 
-
-
-
-
 function showfund(FundState) {
 
 	if(FundState==FundStateBuy){
@@ -321,6 +358,7 @@ function showfund(FundState) {
 			$(".group-listfund").append('<div class="group-one" style="height:100%;background-color: rgb(248,254,254);"> '+
 				'<div class="group-title"><font>已买入基金表</font>'+ 
 				"<div id=butclient style='height:25px;width:350px;float:right;margin-top:-20px; margin-left:900px;'>" +
+				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='sellfund()'>卖出</div>"+
 //				"<div class=clientbut  style=' cursor:pointer; position: relative;' onclick='disbutclient()' >分配客户</div>"+
 //				"<div class=clientbut  style=' cursor:pointer; position: relative;' onclick='updateclient()'>修改</div>"+
 //				"<div class=clientbut  style=' cursor:pointer; position: relative;' onclick='seeclient()'>查看</div>"+
@@ -406,8 +444,8 @@ function showfund(FundState) {
 		             '<th>基金金额</th>'+
 		             '<th>基金份额</th>'+
 		             '<th>基金净值</th>'+
-		             '<th>基金买入日期</th>'+
-		             '<th>基金买入手续费</th>'+
+		             '<th>基金卖出金额</th>'+
+		             '<th>基金卖出净值</th>'+
 		             '<th>基金利润率</th>'+
 		             '<th>基金利润金额</th>'+
 		             '<th>基金卖出日期</th>'+
@@ -442,8 +480,8 @@ function showfund(FundState) {
 			            			    '<th style="font-weight: normal">'+outjson[i].fundAmount+'</th>'+
 			            			    '<th style="font-weight: normal">'+outjson[i].fundShares+'</th>'+
 			            			    '<th style="font-weight: normal">'+outjson[i].fundNetValue+'</th>'+
-			            			    '<th style="font-weight: normal">'+outjson[i].fundBuyDate+'</th>'+
-			            			    '<th style="font-weight: normal">'+outjson[i].fundBuyFee+'</th>'+
+			            			    '<th style="font-weight: normal">'+outjson[i].fundSellAmount+'</th>'+
+			            			    '<th style="font-weight: normal">'+outjson[i].fundSellNetValue+'</th>'+
 			            			    '<th style="font-weight: normal">'+outjson[i].fundProfitRate+'</th>'+
 			            			    '<th style="font-weight: normal">'+outjson[i].fundProfitAmount+'</th>'+
 			            			    '<th style="font-weight: normal">'+outjson[i].fundSellDate+'</th>'+

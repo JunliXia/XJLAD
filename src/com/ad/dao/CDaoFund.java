@@ -1,12 +1,10 @@
 package com.ad.dao;
 
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -102,6 +100,48 @@ public class CDaoFund extends SuperDAO{
 		List findRList=this.getHibernateTemplate().find(hql,cEntityUser.getUserId());
 		return findRList;
 	}
+	
+	
+	/**
+	 * 序号：fund:5
+	 * 功能：修改基金
+	 * 参数：CEntityFund
+	 * 返回值:bolean
+	 */
+	public boolean updateFund(CEntityFund cEntityFund){
+//		CEntityFund aimFund=(CEntityFund) this.getHibernateTemplate().get(CEntityFund.class, cEntityFund.getFundId());
+//		aimFund.setFundSellDate(cEntityFund.getFundSellDate());
+//		aimFund.setFundSellFee(cEntityFund.getFundSellFee());
+//		aimFund.setFundProfitRate(cEntityFund.getFundProfitRate());
+//		aimFund.setFundProfitAmount(cEntityFund.getFundProfitAmount());
+//		aimFund.setFundSellAmount(cEntityFund.getFundSellAmount());
+//		aimFund.setFundSellNetValue(cEntityFund.getFundSellNetValue());
+//		aimFund.setFundState(cEntityFund.getFundState());
+		
+		boolean bisUpdate=false;
+		try {
+			this.getHibernateTemplate().update(cEntityFund);
+			bisUpdate=true;
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return bisUpdate;
+	}
+	
+	
+	/**
+	 * 序号：fund:6
+	 * 功能：通过基金号得到基金详情
+	 * 参数：CEntityFund
+	 * 返回值:CEntityFund
+	 */
+	public CEntityFund queryFundByFundId(CEntityFund cEntityFund){
+		CEntityFund findResult=(CEntityFund)this.getHibernateTemplate().get(CEntityFund.class, cEntityFund.getFundId());
+		return findResult;
+	}
+	
 	
 	
 	

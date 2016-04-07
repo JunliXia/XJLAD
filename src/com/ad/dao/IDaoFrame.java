@@ -74,5 +74,21 @@ public interface IDaoFrame {
 	@SuppressWarnings("unchecked")
 	public List queryFundNameAndFundCode(CEntityUser cEntityUser);
 	
+	/**
+	 * 序号：fund:5
+	 * 功能：基金修改
+	 * 参数：CEntityFund
+	 * 返回值:bolean
+	 */
+	public boolean updateFund(CEntityFund cEntityFund);
+	
+	/**
+	 * 序号：fund:6
+	 * 功能：通过基金号得到基金详情
+	 * 参数：CEntityFund
+	 * 返回值:CEntityFund
+	 */
+	public CEntityFund queryFundByFundId(CEntityFund cEntityFund);
+	
 }
 

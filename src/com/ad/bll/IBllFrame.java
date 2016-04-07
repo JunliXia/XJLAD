@@ -75,6 +75,14 @@ public interface IBllFrame {
 	@SuppressWarnings("unchecked")
 	public List getFundNameAndCode(CEntityUser cEntityUser);
 	
+	/**
+	 * 序号：fundmodule:5 
+	 * 功能：卖出基金
+	 * 参数：CEntityFund
+	 * 返回值:boolean
+	 */
+	public boolean sellFund(CEntityFund cEntityFund);
+	
 	
 	
 	

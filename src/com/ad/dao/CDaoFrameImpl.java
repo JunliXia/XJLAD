@@ -116,4 +116,25 @@ public class CDaoFrameImpl implements IDaoFrame {
 		List findResult=cDaoFund.queryFundNameAndFundCode(cEntityUser);
 		return findResult;
 	}
+	
+	/**
+	 * 序号：fund:5
+	 * 功能：基金修改
+	 * 参数：CEntityFund
+	 * 返回值:bolean
+	 */
+	public boolean updateFund(CEntityFund cEntityFund){
+		boolean bisUpdate=cDaoFund.updateFund(cEntityFund);
+		return bisUpdate;
+	}
+	/**
+	 * 序号：fund:6
+	 * 功能：通过基金号得到基金详情
+	 * 参数：CEntityFund
+	 * 返回值:CEntityFund
+	 */
+	public CEntityFund queryFundByFundId(CEntityFund cEntityFund){
+		CEntityFund findResult=cDaoFund.queryFundByFundId(cEntityFund);
+		return findResult;
+	}
 }

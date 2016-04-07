@@ -12,6 +12,7 @@ import net.sf.json.JSONObject;
 
 import com.ad.bll.IBllFrame;
 import com.ad.entity.CEntityFund;
+import com.ad.tool.MyConstant;
 import com.ad.tool.MyOpcode;
 import com.ad.tool.MySpring;
 
@@ -36,6 +37,8 @@ public class WCreateFund extends HttpServlet {
 		double FundProfitLimit=Double.parseDouble(request.getParameter(MyOpcode.Fund.FundProfitLimit));
 		double FundLossLimit=Double.parseDouble(request.getParameter(MyOpcode.Fund.FundLossLimit));
 		
+		double FundAmount=FundShares*FundNetValue;
+		
 		PrintWriter out = response.getWriter();
 		MySpring context=MySpring.getInstance();
 		IBllFrame iBllFrame=(IBllFrame)context.getContext().getBean("cBllFrameImpl");
@@ -50,6 +53,8 @@ public class WCreateFund extends HttpServlet {
 		cEntityFund.setFundBuyFee(FundBuyFee);
 		cEntityFund.setFundProfitLimit(FundProfitLimit);
 		cEntityFund.setFundLossLimit(FundLossLimit);
+		cEntityFund.setFundAmount(FundAmount);
+		cEntityFund.setFundState(MyConstant.Fund.FundBuy);
 		
 		boolean bisSave=iBllFrame.saveFund(cEntityFund);
 		JSONObject outjson=new JSONObject();

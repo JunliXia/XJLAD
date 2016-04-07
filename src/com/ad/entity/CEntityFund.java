@@ -23,21 +23,21 @@ public class CEntityFund {
 	private int FundState;				//基金状态
 	private double FundProfitLimit;		//基金赢利点
 	private double FundLossLimit;		//基金止损点
+	private double FundSellAmount;		//基金卖出金额
+	private double FundSellNetValue;	//基金卖出净值
 	private int UserId;					//用户号，自增
 	
 	
 	public CEntityFund() {
 	}
 	
-	
-	
-	
-public CEntityFund(int fundId, String fundName, String fundCode,
+
+	public CEntityFund(int fundId, String fundName, String fundCode,
 			double fundAmount, double fundShares, double fundNetValue,
 			String fundBuyDate, double fundBuyFee, String fundSellDate,
 			double fundSellFee, double fundProfitRate, double fundProfitAmount,
 			int fundState, double fundProfitLimit, double fundLossLimit,
-			int userId) {
+			double fundSellAmount, double fundSellNetValue, int userId) {
 		FundId = fundId;
 		FundName = fundName;
 		FundCode = fundCode;
@@ -53,32 +53,15 @@ public CEntityFund(int fundId, String fundName, String fundCode,
 		FundState = fundState;
 		FundProfitLimit = fundProfitLimit;
 		FundLossLimit = fundLossLimit;
+		FundSellAmount = fundSellAmount;
+		FundSellNetValue = fundSellNetValue;
 		UserId = userId;
 	}
 
 
 
 
-//	public CEntityFund(int fundId, String fundName, String fundCode,
-//			double fundAmount, double fundShares, double fundNetValue,
-//			String fundBuyDate, double fundBuyFee, String fundSellDate,
-//			double fundSellFee, double fundProfitRate, double fundProfitAmount,
-//			int fundState, int userId) {
-//		FundId = fundId;
-//		FundName = fundName;
-//		FundCode = fundCode;
-//		FundAmount = fundAmount;
-//		FundShares = fundShares;
-//		FundNetValue = fundNetValue;
-//		FundBuyDate = fundBuyDate;
-//		FundBuyFee = fundBuyFee;
-//		FundSellDate = fundSellDate;
-//		FundSellFee = fundSellFee;
-//		FundProfitRate = fundProfitRate;
-//		FundProfitAmount = fundProfitAmount;
-//		FundState = fundState;
-//		UserId = userId;
-//	}
+
 	@Id
 	@GeneratedValue
 	public int getFundId() {
@@ -177,6 +160,20 @@ public CEntityFund(int fundId, String fundName, String fundCode,
 	public void setFundLossLimit(double fundLossLimit) {
 		FundLossLimit = fundLossLimit;
 	}
+	public double getFundSellAmount() {
+		return FundSellAmount;
+	}
+	public void setFundSellAmount(double fundSellAmount) {
+		FundSellAmount = fundSellAmount;
+	}
+	public double getFundSellNetValue() {
+		return FundSellNetValue;
+	}
+	public void setFundSellNetValue(double fundSellNetValue) {
+		FundSellNetValue = fundSellNetValue;
+	}
+
+
 	@Override
 	public String toString() {
 		return "CEntityFund [FundAmount=" + FundAmount + ", FundBuyDate="
@@ -185,10 +182,17 @@ public CEntityFund(int fundId, String fundName, String fundCode,
 				+ FundLossLimit + ", FundName=" + FundName + ", FundNetValue="
 				+ FundNetValue + ", FundProfitAmount=" + FundProfitAmount
 				+ ", FundProfitLimit=" + FundProfitLimit + ", FundProfitRate="
-				+ FundProfitRate + ", FundSellDate=" + FundSellDate
-				+ ", FundSellFee=" + FundSellFee + ", FundShares=" + FundShares
-				+ ", FundState=" + FundState + ", UserId=" + UserId + "]";
+				+ FundProfitRate + ", FundSellAmount=" + FundSellAmount
+				+ ", FundSellDate=" + FundSellDate + ", FundSellFee="
+				+ FundSellFee + ", FundSellNetValue=" + FundSellNetValue
+				+ ", FundShares=" + FundShares + ", FundState=" + FundState
+				+ ", UserId=" + UserId + "]";
 	}
+
+
+
+
+
 
 	
 	

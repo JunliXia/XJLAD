@@ -78,6 +78,7 @@ public class MyOpcode {
 	 */
 	public static final class Fund{
 		public static final String Fund="Fund";
+		public static final String FundId="FundId";
 		public static final String FundName="FundName";
 		public static final String FundCode="FundCode";
 		public static final String FundAmount="FundAmount";
@@ -91,8 +92,9 @@ public class MyOpcode {
 		public static final String FundProfitAmount="FundProfitAmount";
 		public static final String FundProfitLimit="FundProfitLimit";
 		public static final String FundLossLimit="FundLossLimit";
+		public static final String FundSellAmount="FundSellAmount";
+		public static final String FundSellNetValue="FundSellNetValue";
 		public static final String FundState="FundState";
-		
 	}
 	
 	
