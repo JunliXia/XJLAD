@@ -30,6 +30,9 @@ public class WGetUserFund extends HttpServlet {
 		int UserId=Integer.parseInt(request.getParameter(MyOpcode.User.UserId));
 		int Page=Integer.parseInt(request.getParameter(MyOpcode.Operation.PAGE));
 		int FundState=Integer.parseInt(request.getParameter(MyOpcode.Fund.FundState));
+		
+		
+		
 		PrintWriter out = response.getWriter();
 		MySpring context=MySpring.getInstance();
 		IBllFrame iBllFrame=(IBllFrame)context.getContext().getBean("cBllFrameImpl");
@@ -37,7 +40,8 @@ public class WGetUserFund extends HttpServlet {
 		cEntityUser.setUserId(UserId);
 		
 		List<CEntityFund> findReuslt=iBllFrame.getUserFund(cEntityUser,Page,FundState);
-		
+		System.out.println("page--------"+Page+"------FundState-------"+FundState);
+		System.out.println("size-----------------------"+findReuslt.size());
 		JSONArray outjson=JSONArray.fromObject(findReuslt);
 		
 		out.println(outjson);

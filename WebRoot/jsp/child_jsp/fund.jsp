@@ -28,9 +28,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <div class="group-listfund">
-  		</div>
-   <div style="margin-top:-65px;margin-left:300px" class="tcdPageCode"></div>
+  	<div class="group-listfund">
+<!--  		 <div style="margin-top:-65px;margin-left:300px" class="tcdPageCode"></div>-->
+  	</div>
+   
   </body>
   
   

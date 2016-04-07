@@ -39,6 +39,8 @@ public class WGetFundNumber extends HttpServlet {
 		int page=count/MyConstant.Paging.PageLength+1;
 		JSONObject outjson=new JSONObject();
 		outjson.put("FundNumber", page);
+		
+		System.out.println("FundNumber------------"+page);
 		System.out.println(outjson);
 		
 		out.println(outjson);
