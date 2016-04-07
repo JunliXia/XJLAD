@@ -3,7 +3,6 @@ package com.ad.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import net.sf.json.JSONArray;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -43,19 +42,19 @@ public class CDaoFund extends SuperDAO{
 	
 	/**
 	 * 序号：fund:2
-	 * 功能：按用户号查询基金
+	 * 功能：按用户号查询已买/已卖基金
 	 * 参数：CEntityUser(UserId),page
 	 * 返回值:List<CEntityFund>
 	 */
 	@SuppressWarnings("unchecked")
-	public List<CEntityFund> queryFundByUserAccount(final CEntityUser cEntityUser, final int page){
+	public List<CEntityFund> queryFundByUserId(final CEntityUser cEntityUser, final int page,final int FundState){
 		List<CEntityFund> findResult=this.getHibernateTemplate().executeFind(new HibernateCallback() {
 			
 			public Object doInHibernate(Session arg0) throws HibernateException,
 					SQLException {
 				// TODO Auto-generated method stub
-				String hql="from com.ad.entity.CEntityFund as fund where fund.userId=?";
-				Query query = arg0.createQuery(hql).setInteger(0, cEntityUser.getUserId());  
+				String hql="from com.ad.entity.CEntityFund as fund where fund.userId=? and fund.fundState=?";
+				Query query = arg0.createQuery(hql).setInteger(0, cEntityUser.getUserId()).setInteger(1, FundState);  
 				query.setFirstResult(page*MyConstant.Paging.PageLength);     
 			    query.setMaxResults(MyConstant.Paging.PageLength); 
 			    List<CEntityFund> findResult=query.list();
@@ -63,6 +62,21 @@ public class CDaoFund extends SuperDAO{
 			}
 		});
 		return findResult;
+	}
+	
+	/**
+	 * 序号：fund:3
+	 * 功能：按用户号查询已买/已卖的基金总数
+	 * 参数：CEntityUser(UserId),FundState
+	 * 返回值:int
+	 */
+	public int queryFundNumberByUserId(CEntityUser cEntityUser,int FundState){
+		String hql="select count(*) from com.ad.entity.CEntityFund as fund where userId=? and fundState=?";
+		List<?> findResult=this.getHibernateTemplate().find(hql,new Object[]{cEntityUser.getUserId(),FundState});
+		Long result=(Long)findResult.get(0);
+		int count=result.intValue();
+		return count;
+	
 	}
 	
 	
@@ -75,11 +89,10 @@ public class CDaoFund extends SuperDAO{
 		CEntityUser cEntityUser=new CEntityUser();
 		cEntityUser.setUserId(1);
 		
-		List<CEntityFund> findResult=tt.queryFundByUserAccount(cEntityUser, 2);
+		int findResult=tt.queryFundNumberByUserId(cEntityUser,MyConstant.Fund.FundSell);
 		
-		JSONArray outjson=JSONArray.fromObject(findResult);
-		System.out.println(outjson);
-		
+//		JSONArray outjson=JSONArray.fromObject(findResult);
+		System.out.println(findResult);
 //		Iterator<CEntityFund> it=findResult.iterator();
 //		int count=0;
 //		while(it.hasNext()){

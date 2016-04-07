@@ -1,6 +1,9 @@
 var str;
 var arrClientName=new Array();
 var UserName=""
+	
+var pageCountBuyReal;
+var pageCountSellReal;
 $(document).ready(function() {
 	$.getJSON("./WGetUserIndo",{
 		UserAccount:UserAccount,
@@ -11,32 +14,16 @@ $(document).ready(function() {
 		}
 	})
 	
-		
-	 $(".tcdPageCode").createPage({
-	        pageCount:20,
-	        current:1,
-	        backFn:function(p){
-	            console.log(p);
-	            
-	            $.getJSON("./WGetUserFund",{UserId:UserId,page:p},function(outjson){
-	    			for ( var i = 0; i < outjson.length; i++) {
-	    			$(".thisgroup").append('<tr onclick=do_onclick(this) ondblclick=do_blcclick(this) onmousemove="changeTrColorone(this)" onmouseout="changeTrColortwo(this)"   onselectstart="return false;" style="height:20x;font-size:12px;font-weight: normal;background-color: rgb(232,251,250);-moz-user-select:none;" FundId='+outjson[i].fundId+'>'+
-	    					'<th style="font-weight: normal">'+outjson[i].fundName+'</th>'+
-	    					'<th style="font-weight: normal">'+outjson[i].fundCode+'</th>'+
-//	    				    '<th style="font-weight: normal">'+outjson[i].ClientPhone+'</th>'+
-//	    				    '<th style="font-weight: normal">'+outjson[i].ClientArea+'</th>'+
-//	    				    '<th style="font-weight: normal">'+outjson[i].ClientAddress+'</th>'+
-//	    				    '<th style="font-weight: normal">'+outjson[i].ClientCompany+'</th>'+
-//	    					'<th style="font-weight: normal; display:none;">'+outjson[i].ClientId+'</th>'+
-	    					'</tr>')
-	    		}
-	    	});	
-	         
-	      }
-	 });
 	
+		 //获得基金数
+	
+	 $.getJSON("./WGetFundNumber",{UserId:UserId,FundState:0},function(outjson){
+		 pageCountBuyReal=outjson.FundNumber;
+	});	
+	
+	setTimeout(showfund,500);
 	showmainfundtitle();
-	showfund(); 
+//	showfund(); 
 
 	
 	
@@ -677,6 +664,7 @@ function changecustomerok(x) {
  }
 
 function showfund() {
+
     $(".group-listfund").html("");
 	$(".group-listfund").append('<div class="group-one" style="height:100%;background-color: rgb(248,254,254);"> '+
 		'<div class="group-title"><font>基金表</font>'+ 
@@ -714,24 +702,57 @@ function showfund() {
          
          
 	'</div>');
+
+	
+
 	
 	
-	 $(".tcdPageCode").createPage({
-	        pageCount:20,
+	//首先触发第一页
+	  $.getJSON("./WGetUserFund",{UserId:UserId,page:0,FundState:0},function(outjson){
+			for ( var i = 0; i < outjson.length; i++) {
+			$(".thisgroup").append('<tr onclick=do_onclick(this) ondblclick=do_blcclick(this) onmousemove="changeTrColorone(this)" onmouseout="changeTrColortwo(this)"   onselectstart="return false;" style="height:20x;font-size:12px;font-weight: normal;background-color: rgb(232,251,250);-moz-user-select:none;" FundId='+outjson[i].fundId+'>'+
+					'<th style="font-weight: normal">'+outjson[i].fundId+'</th>'+
+					'<th style="font-weight: normal">'+outjson[i].fundName+'</th>'+
+					'<th style="font-weight: normal">'+outjson[i].fundCode+'</th>'+
+				    '<th style="font-weight: normal">'+outjson[i].fundAmount+'</th>'+
+				    '<th style="font-weight: normal">'+outjson[i].fundShares+'</th>'+
+				    '<th style="font-weight: normal">'+outjson[i].fundNetValue+'</th>'+
+				    '<th style="font-weight: normal">'+outjson[i].fundBuyDate+'</th>'+
+				    '<th style="font-weight: normal">'+outjson[i].fundBuyFee+'</th>'+
+				    '<th style="font-weight: normal">'+outjson[i].fundProfitRate+'</th>'+
+				    '<th style="font-weight: normal">'+outjson[i].fundProfitAmount+'</th>'+
+				    '<th style="font-weight: normal">'+outjson[i].fundSellDate+'</th>'+
+				    '<th style="font-weight: normal">'+outjson[i].fundSellFee+'</th>'+
+//					'<th style="font-weight: normal; display:none;">'+outjson[i].ClientId+'</th>'+
+					'</tr>')
+		}
+	});	
+	
+	
+//	  alert(pageCountBuyReal)
+	  $(".tcdPageCode").createPage({
+	        pageCount:pageCountBuyReal,
 	        current:1,
 	        backFn:function(p){
 	            console.log(p);
+	            $(".thisgroup").html("")
 	            
 	            
-	            $.getJSON("./WGetUserFund",{UserId:UserId,page:p},function(outjson){
+	            $.getJSON("./WGetUserFund",{UserId:UserId,page:p,FundState:0},function(outjson){
 	    			for ( var i = 0; i < outjson.length; i++) {
 	    			$(".thisgroup").append('<tr onclick=do_onclick(this) ondblclick=do_blcclick(this) onmousemove="changeTrColorone(this)" onmouseout="changeTrColortwo(this)"   onselectstart="return false;" style="height:20x;font-size:12px;font-weight: normal;background-color: rgb(232,251,250);-moz-user-select:none;" FundId='+outjson[i].fundId+'>'+
+	    					'<th style="font-weight: normal">'+outjson[i].fundId+'</th>'+
 	    					'<th style="font-weight: normal">'+outjson[i].fundName+'</th>'+
 	    					'<th style="font-weight: normal">'+outjson[i].fundCode+'</th>'+
-//	    				    '<th style="font-weight: normal">'+outjson[i].ClientPhone+'</th>'+
-//	    				    '<th style="font-weight: normal">'+outjson[i].ClientArea+'</th>'+
-//	    				    '<th style="font-weight: normal">'+outjson[i].ClientAddress+'</th>'+
-//	    				    '<th style="font-weight: normal">'+outjson[i].ClientCompany+'</th>'+
+	    				    '<th style="font-weight: normal">'+outjson[i].fundAmount+'</th>'+
+	    				    '<th style="font-weight: normal">'+outjson[i].fundShares+'</th>'+
+	    				    '<th style="font-weight: normal">'+outjson[i].fundNetValue+'</th>'+
+	    				    '<th style="font-weight: normal">'+outjson[i].fundBuyDate+'</th>'+
+	    				    '<th style="font-weight: normal">'+outjson[i].fundBuyFee+'</th>'+
+	    				    '<th style="font-weight: normal">'+outjson[i].fundProfitRate+'</th>'+
+	    				    '<th style="font-weight: normal">'+outjson[i].fundProfitAmount+'</th>'+
+	    				    '<th style="font-weight: normal">'+outjson[i].fundSellDate+'</th>'+
+	    				    '<th style="font-weight: normal">'+outjson[i].fundSellFee+'</th>'+
 //	    					'<th style="font-weight: normal; display:none;">'+outjson[i].ClientId+'</th>'+
 	    					'</tr>')
 	    		}

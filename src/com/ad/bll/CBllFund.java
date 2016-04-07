@@ -38,13 +38,24 @@ public class CBllFund {
 	/**
 	 * 序号：fundmodule:2 
 	 * 功能：获得用户基金
-	 * 参数：CEntityUser(UserId),page
+	 * 参数：CEntityUser(UserId),page,FundState
 	 * 返回值:List<CEntityFund>
 	 */
-	public List<CEntityFund> getUserFund(CEntityUser cEntityUser,int page){
-		List<CEntityFund> findReuslt=iDaoFrame.queryFundByUserAccount(cEntityUser, page);
+	public List<CEntityFund> getUserFund(CEntityUser cEntityUser,int page,int FundState){
+		page=page-1;
+		List<CEntityFund> findReuslt=iDaoFrame.queryFundByUserId(cEntityUser, page,FundState);
 		return findReuslt;
 	}
 	
+	/**
+	 * 序号：fundmodule:3 
+	 * 功能：获得用户/已买/已卖基金数
+	 * 参数：CEntityUser(UserId),FundState
+	 * 返回值:int
+	 */
+	public int getUserFundNumer(CEntityUser cEntityUser,int FundState){
+		int count=iDaoFrame.queryFundNumberByUserId(cEntityUser, FundState);
+		return count;
+	}
 	
 }

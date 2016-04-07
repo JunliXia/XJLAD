@@ -92,9 +92,20 @@ public class CBllFrameImpl implements IBllFrame{
 	 * 参数：CEntityUser(UserId),page
 	 * 返回值:List<CEntityFund>
 	 */
-	public List<CEntityFund> getUserFund(CEntityUser cEntityUser,int page){
-		List<CEntityFund> findReuslt=cBllFund.getUserFund(cEntityUser, page);
+	public List<CEntityFund> getUserFund(CEntityUser cEntityUser,int page,int FundState){
+		List<CEntityFund> findReuslt=cBllFund.getUserFund(cEntityUser, page,FundState);
 		return findReuslt;
 	}
 
+	
+	/**
+	 * 序号：fundmodule:3 
+	 * 功能：获得用户/已买/已卖基金数
+	 * 参数：CEntityUser(UserId),FundState
+	 * 返回值:int
+	 */
+	public int getUserFundNumer(CEntityUser cEntityUser,int FundState){
+		int count =cBllFund.getUserFundNumer(cEntityUser, FundState);
+		return count;
+	}
 }

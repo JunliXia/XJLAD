@@ -51,12 +51,18 @@ public interface IDaoFrame {
 	/**
 	 * 序号：fund:2
 	 * 功能：按用户号查询基金
-	 * 参数：CEntityUser(UserId),page
+	 * 参数：CEntityUser(UserId),page,FundState
 	 * 返回值:List<CEntityFund>
 	 */
-	public List<CEntityFund> queryFundByUserAccount(final CEntityUser cEntityUser, final int page);
+	public List<CEntityFund> queryFundByUserId(CEntityUser cEntityUser, int page,int FundState);
 	
-	
+	/**
+	 * 序号：fund:3
+	 * 功能：按用户号查询已买/已卖的基金总数
+	 * 参数：CEntityUser(UserId),FundState
+	 * 返回值:int
+	 */
+	public int queryFundNumberByUserId(CEntityUser cEntityUser,int FundState);
 	
 	
 }
