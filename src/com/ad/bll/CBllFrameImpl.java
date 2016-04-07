@@ -108,4 +108,16 @@ public class CBllFrameImpl implements IBllFrame{
 		int count =cBllFund.getUserFundNumer(cEntityUser, FundState);
 		return count;
 	}
+	
+	/**
+	 * 序号：fundmodule:4 
+	 * 功能：获得用户/已买/已卖基金名称和基金代码
+	 * 参数：CEntityUser(UserId)
+	 * 返回值:List
+	 */
+	@SuppressWarnings("unchecked")
+	public List getFundNameAndCode(CEntityUser cEntityUser){
+		List findResutl=cBllFund.getFundNameAndCode(cEntityUser);
+		return findResutl;
+	}
 }

@@ -1,8 +1,12 @@
 package com.ad.dao;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -86,8 +90,22 @@ public class CDaoFund extends SuperDAO{
 	
 	}
 	
+	/**
+	 * 序号：fund:4
+	 * 功能：按用户号查询已买/已卖的基金名称与基金代码
+	 * 参数：CEntityUser(UserId)
+	 * 返回值:List
+	 */
+	@SuppressWarnings("unchecked")
+	public List queryFundNameAndFundCode(CEntityUser cEntityUser){
+		String hql="select fund.fundName,fund.fundCode from com.ad.entity.CEntityFund as fund where fund.userId=? group by fund.fundName ";
+		List findRList=this.getHibernateTemplate().find(hql,cEntityUser.getUserId());
+		return findRList;
+	}
 	
 	
+	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
 		"applicationContext.xml");
@@ -96,10 +114,20 @@ public class CDaoFund extends SuperDAO{
 		CEntityUser cEntityUser=new CEntityUser();
 		cEntityUser.setUserId(1);
 		
-		int findResult=tt.queryFundNumberByUserId(cEntityUser,MyConstant.Fund.FundSell);
+		List findResult=tt.queryFundNameAndFundCode(cEntityUser);
+		JSONArray outjson=JSONArray.fromObject(findResult);
+		System.out.println(outjson);
+//		Iterator it=findResult.iterator();
+//		while (it.hasNext()) {       
+//			Object[] tuple = (Object[]) it.next();
+//			System.out.println((String)tuple[0]+"---"+(String)tuple[1]);
+//		 }   
+//		
+		
+//		int findResult=tt.queryFundNumberByUserId(cEntityUser,MyConstant.Fund.FundSell);
 		
 //		JSONArray outjson=JSONArray.fromObject(findResult);
-		System.out.println(findResult);
+//		System.out.println(findResult);
 //		Iterator<CEntityFund> it=findResult.iterator();
 //		int count=0;
 //		while(it.hasNext()){

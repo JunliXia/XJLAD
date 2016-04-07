@@ -89,6 +89,8 @@ public class MyOpcode {
 		public static final String FundSellFee="FundSellFee";
 		public static final String FundProfitRate="FundProfitRate";
 		public static final String FundProfitAmount="FundProfitAmount";
+		public static final String FundProfitLimit="FundProfitLimit";
+		public static final String FundLossLimit="FundLossLimit";
 		public static final String FundState="FundState";
 		
 	}

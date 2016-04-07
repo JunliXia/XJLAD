@@ -58,4 +58,17 @@ public class CBllFund {
 		return count;
 	}
 	
+	/**
+	 * 序号：fundmodule:4 
+	 * 功能：获得用户/已买/已卖基金名称和基金代码
+	 * 参数：CEntityUser(UserId)
+	 * 返回值:List
+	 */
+	@SuppressWarnings("unchecked")
+	public List getFundNameAndCode(CEntityUser cEntityUser){
+		List findResult=iDaoFrame.queryFundNameAndFundCode(cEntityUser);
+		return findResult;
+	}
+	
+	
 }

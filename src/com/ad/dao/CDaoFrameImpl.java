@@ -103,4 +103,17 @@ public class CDaoFrameImpl implements IDaoFrame {
 		int count = cDaoFund.queryFundNumberByUserId(cEntityUser, FundState);
 		return count;
 	}
+	
+	
+	/**
+	 * 序号：fund:4
+	 * 功能：按用户号查询已买/已卖的基金名称与基金代码
+	 * 参数：CEntityUser(UserId)
+	 * 返回值:List
+	 */
+	@SuppressWarnings("unchecked")
+	public List queryFundNameAndFundCode(CEntityUser cEntityUser){
+		List findResult=cDaoFund.queryFundNameAndFundCode(cEntityUser);
+		return findResult;
+	}
 }
