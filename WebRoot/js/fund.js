@@ -222,12 +222,6 @@ function showfund(FundState) {
         ' <div style="margin-bottom:-10px;margin-left:300px" class="tcdPageCode"></div>'+
          
 	'</div>');
-
-	
-
-	
-	
-
 	  var currentPage=1;
 	  $(".tcdPageCode").createPage({
 	        pageCount:pageCountReal,
@@ -238,6 +232,7 @@ function showfund(FundState) {
 	            
 	            $.getJSON("./WGetUserFund",{UserId:UserId,page:p,FundState:FundState},function(outjson){
 	            	for ( var i = 0; i < outjson.length; i++) {
+	            		
 	            		$(".thisgroup").append('<tr onclick=do_onclick(this) ondblclick=do_blcclick(this) onmousemove="changeTrColorone(this)" onmouseout="changeTrColortwo(this)"   onselectstart="return false;" style="height:20x;font-size:12px;font-weight: normal;background-color: rgb(232,251,250);-moz-user-select:none;" FundId='+outjson[i].fundId+'>'+
 	            				'<th style="font-weight: normal">'+outjson[i].fundId+'</th>'+
 	            				'<th style="font-weight: normal">'+outjson[i].fundName+'</th>'+

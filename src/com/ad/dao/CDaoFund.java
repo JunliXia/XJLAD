@@ -53,7 +53,14 @@ public class CDaoFund extends SuperDAO{
 			public Object doInHibernate(Session arg0) throws HibernateException,
 					SQLException {
 				// TODO Auto-generated method stub
-				String hql="from com.ad.entity.CEntityFund as fund where fund.userId=? and fund.fundState=?";
+				String addHql="";
+				if(FundState==MyConstant.Fund.FundBuy){
+					addHql="order by fund.fundBuyDate desc";
+				}else if(FundState==MyConstant.Fund.FundSell){
+					addHql="order by fund.fundSellDate desc";
+				}
+				
+				String hql="from com.ad.entity.CEntityFund as fund where fund.userId=? and fund.fundState=?"+addHql;
 				Query query = arg0.createQuery(hql).setInteger(0, cEntityUser.getUserId()).setInteger(1, FundState);  
 				query.setFirstResult(page*MyConstant.Paging.PageLength);     
 			    query.setMaxResults(MyConstant.Paging.PageLength); 
