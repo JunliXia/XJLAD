@@ -5,7 +5,7 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 public class CreateTest {
 	public static void main(String[] args) {
-//		 createTable();
+		 createTable();
 	}
 
 	// ½¨±í
