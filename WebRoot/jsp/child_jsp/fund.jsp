@@ -22,7 +22,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
   	 <script type="text/javascript" src="js/common/date.js"></script>
 	 <script type="text/javascript" src="js/common/jquery.page.js"></script>
+	 <script type="text/javascript" src="js/common/common.js"></script>
   	 <script type="text/javascript" src="js/fund.js"></script>
+  	 <script type="text/javascript" src="js/fundvaluation.js"></script>
   
 
   </head>

@@ -132,4 +132,38 @@ public class CBllFrameImpl implements IBllFrame{
 		boolean bisSell=cBllFund.sellFund(cEntityFund);
 		return bisSell;
 	}
+	
+	/**
+	 * 序号：fundmodule:6
+	 * 功能：得到用户特定基金的基金数量
+	 * 参数：CEntityFund(FundName,FundCode,FundState,UserId)
+	 * 返回值:int
+	 */
+	public int getUserSpecificFundNumer(CEntityFund cEntityFund){
+		int count=cBllFund.getUserSpecificFundNumer(cEntityFund);
+		return count;
+	}
+	
+	/**
+	 * 序号：fundmodule:7
+	 * 功能：得到用户特定基金的基金信息
+	 * 参数：CEntityFund(FundName,FundCode,FundState,UserId)
+	 * 返回值:List
+	 */
+	public List<CEntityFund> getUserSpecificFundInfo(CEntityFund cEntityFund,int page){
+		List<CEntityFund> findResult=cBllFund.getUserSpecificFundInfo(cEntityFund, page);
+		return findResult;
+	}
+	
+	/**
+	 * 序号：fundmodule:8
+	 * 功能：得到用户已买基金的基金名，基金号，基金数量
+	 * 参数：CEntityFund
+	 * 返回值:List
+	 */
+	@SuppressWarnings("unchecked")
+	public List getUserFundNameCodeNumber(CEntityFund cEntityFund){
+		List findResult=cBllFund.getUserFundNameCodeNumber(cEntityFund);
+		return findResult;
+	}
 }

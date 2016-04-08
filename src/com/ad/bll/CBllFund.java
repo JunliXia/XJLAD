@@ -95,8 +95,8 @@ public class CBllFund {
 		double resultProfitAmount=resultSellAmount-aimFund.getFundAmount()-aimFund.getFundBuyFee()-cEntityFund.getFundSellFee();
 		aimFund.setFundProfitAmount(resultProfitAmount);
 		
-		//基金利润率（%）=基金利润金额/(基金金额+基金买入手续费+基金卖出手续费)
-		double resultProfitRate=resultProfitAmount/(aimFund.getFundAmount()+aimFund.getFundBuyFee()+cEntityFund.getFundSellFee());
+		//基金利润率（%）=基金利润金额/(基金金额+基金买入手续费)
+		double resultProfitRate=resultProfitAmount/(aimFund.getFundAmount()+aimFund.getFundBuyFee());
 		DecimalFormat df = new DecimalFormat("0.0000");
 		aimFund.setFundProfitRate(Double.parseDouble(df.format(resultProfitRate))*100);
 		
@@ -104,5 +104,40 @@ public class CBllFund {
 		return bisSell;
 	}
 	
+	
+	/**
+	 * 序号：fundmodule:6
+	 * 功能：得到用户特定基金的基金数量
+	 * 参数：CEntityFund(FundName,FundCode,FundState,UserId)
+	 * 返回值:int
+	 */
+	public int getUserSpecificFundNumer(CEntityFund cEntityFund){
+		int count = iDaoFrame.queryUserFundNumberByFundNameCodeUserId(cEntityFund);
+		return count;
+	}
+	
+	/**
+	 * 序号：fundmodule:7
+	 * 功能：得到用户特定基金的基金信息
+	 * 参数：CEntityFund(FundName,FundCode,FundState,UserId)
+	 * 返回值:List
+	 */
+	public List<CEntityFund> getUserSpecificFundInfo(CEntityFund cEntityFund,int page){
+		page=page-1;
+		List<CEntityFund> findResult=iDaoFrame.queryUserFundByFundNameCodeUserId(cEntityFund, page);
+		return findResult;
+	}
+	
+	/**
+	 * 序号：fundmodule:8
+	 * 功能：得到用户已买基金的基金名，基金号，基金数量
+	 * 参数：CEntityFund
+	 * 返回值:List
+	 */
+	@SuppressWarnings("unchecked")
+	public List getUserFundNameCodeNumber(CEntityFund cEntityFund){
+		List findResult=iDaoFrame.queryUserFundNameAndFundCodeNumber(cEntityFund);
+		return findResult;
+	}
 	
 }

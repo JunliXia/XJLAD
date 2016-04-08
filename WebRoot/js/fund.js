@@ -4,6 +4,8 @@ var arrFundCode=new Array();
 var UserName=""
 	
 var pageCountReal;
+var pageCountRealForVoluation;
+
 var FundStateBuy=0;
 var FundStateSell=1;
 
@@ -243,106 +245,6 @@ function sellfundOk() {
 	})
 }
 
-function valuationfundOk() {
-	closepage();
-	var FundName=$("#fundseachnameId").val();
-	var FundCode=$("#fundcodeId").val();
-	var FundYesterdayNetValue=$("#fundyesterdayvalue").val();
-	var FundTodayGains=$("#fundtodaygains").val();
-	var FundFeeRate=$("#fundfeerate").val();
-	
-	 $(".group-listfund").html("");
-		$(".group-listfund").append('<div class="group-one" style="height:100%;background-color: rgb(248,254,254);"> '+
-			'<img src="./pic/back.png" style="height:30px;width:20px;cursor: pointer;margin-left:20px;margin-bottom:-40px;" onclick="showback()"></img>'+
-			'<div class="group-title"><font>'+FundName+'基金估算表</font>'+ 
-			"<div id=butclient style='height:25px;width:350px;float:right;margin-top:-20px; margin-left:900px;'>" +
-//			"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='sellfund()'>卖出</div>"+
-//			"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='valuationfund()'>估值</div>"+
-//			"<div class=clientbut  style=' cursor:pointer; position: relative;' onclick='updateclient()'>修改</div>"+
-//			"<div class=clientbut  style=' cursor:pointer; position: relative;' onclick='seeclient()'>查看</div>"+
-//			"<div class=clientbut  style=' cursor:pointer; position: relative;' onclick='delclient()'>删除</div>"+
-		"</div>"+
-			'</div>'+
-			'<table id="tabclient" style="font-size:13px;" width="100%">'+
-	        '<tbody>'+
-	         '<tr style="height:20x;background-color:rgb(178,243,238);font-size:13px;color:rgb(60,60,60;">'+
-	           	 '<th>基金号</th>'+
-	         	 '<th>基金名</th>'+
-	         	 '<th>基金代码</th>'+
-	             '<th>基金金额</th>'+
-	             '<th>基金份额</th>'+
-	             '<th>基金净值</th>'+
-	             '<th>基金买入日期</th>'+
-	             '<th>基金买入手续费</th>'+
-	             '<th>基金盈利点</th>'+
-	             '<th>基金止损点</th>'+
-//	             '<th>基金卖出日期</th>'+
-//	             '<th>基金卖出手续费</th>'+
-	         '</tr>'+
-	         '</tbody>'+
-	         
-	          
-	         '<tbody  class="thisgroup">'+
-	         	
-	         '</tbody>'+
-	         '</table>'+
-	      
-	        ' <div style="margin-bottom:-10px;margin-left:300px" class="tcdPageCode"></div>'+
-	         
-		'</div>');
-//		  $(".tcdPageCode").createPage({
-//		        pageCount:pageCountReal,
-//		        current:1,
-//		        backFn:function(p){
-//		            console.log(p);
-//		            $(".thisgroup").html("")
-//		            
-//		            $.getJSON("./WGetUserFund",{UserId:UserId,page:p,FundState:FundState},function(outjson){
-//		            	for ( var i = 0; i < outjson.length; i++) {
-//		            		
-//		            		$(".thisgroup").append('<tr onclick=do_onclick(this) ondblclick=do_blcclick(this) onmousemove="changeTrColorone(this)" onmouseout="changeTrColortwo(this)"   onselectstart="return false;" style="height:20x;font-size:12px;font-weight: normal;background-color: rgb(232,251,250);-moz-user-select:none;" FundId='+outjson[i].fundId+'>'+
-//		            				'<th style="font-weight: normal">'+outjson[i].fundId+'</th>'+
-//		            				'<th style="font-weight: normal">'+outjson[i].fundName+'</th>'+
-//		            				'<th style="font-weight: normal">'+outjson[i].fundCode+'</th>'+
-//		            			    '<th style="font-weight: normal">'+outjson[i].fundAmount+'</th>'+
-//		            			    '<th style="font-weight: normal">'+outjson[i].fundShares+'</th>'+
-//		            			    '<th style="font-weight: normal">'+outjson[i].fundNetValue+'</th>'+
-//		            			    '<th style="font-weight: normal">'+outjson[i].fundBuyDate+'</th>'+
-//		            			    '<th style="font-weight: normal">'+outjson[i].fundBuyFee+'</th>'+
-//		            			    '<th style="font-weight: normal">'+outjson[i].fundProfitLimit+'</th>'+
-//		            			    '<th style="font-weight: normal">'+outjson[i].fundLossLimit+'</th>'+
-////		            			    '<th style="font-weight: normal">'+outjson[i].fundSellDate+'</th>'+
-////		            			    '<th style="font-weight: normal">'+outjson[i].fundSellFee+'</th>'+
-////		            				'<th style="font-weight: normal; display:none;">'+outjson[i].ClientId+'</th>'+
-//		            				'</tr>')
-//		            	}
-//		    	});	
-//		        }
-//		    });
-
-	
-}
-
-function valuationfund() {
-	$(".shadow").show();
-	$(".pagehead font").html("基金估值")
-	$(".showpage").css("width","280px");
-	$(".showpage").css("height","270px");
-	$(".showpage").css("margin-left","600px");
-	$(".pagemain").html("<div class=userset>"+
-//  				"<div><a>基金号:</a><input id=fundId disabled='disabled' type='text' style='margin-left: 29px;'value='"+$(x).find("th").eq(0).html()+"' /></div>"+
-  				"<div><a>基金名:</a><input id=fundseachnameId type='text' style='margin-left: 29px;'/></div>"+
-  				"<div><a>基金代码：</a><input  type='text' id='fundcodeId' /></div>"+
-  				"<div><a>昨日净值：</a><input  type='text' id='fundyesterdayvalue'/></div>"+
-  				"<div><a>今日涨幅：</a><input  type='text' id='fundtodaygains'/></div>"+
-  				"<div><a>手续费率：</a><input  type='text' id='fundfeerate'/></div>"+
-  	  			
-  				"<div style='margin-left: 30px;margin-top: 10px;'><button onclick='valuationfundOk()' class=but1>确定</button><button class=but1 onclick='closepage()'>取消</button></div>"+
-  				"</div>");
-	
-	
-}
-
 
 
 
@@ -395,17 +297,23 @@ $("#fundseachnameId").autocomplete(resarray,{
     function SearchCallback(event, data, formatted) {
 //$(".tip").show().html("您的选择是：" + (!data ? "空" : formatted));
 //    	$("#fundcodeId").val(arrFundCode[i]);
-    	
+    	var fundCode;
+    	var fundName=data;
+//    	alert(fundName)
+    	var count=0;
     	for(var i=0;i<arrFundName.length;i++){
+    		count=count+1;
     		if(arrFundName[i]==data){
     			$("#fundcodeId").val(arrFundCode[i]);
+    			fundCode=arrFundCode[i];
     			break;
     		}
-    		
     	}
-    	
+    	 
     }
 });
+
+
 
 
 
@@ -426,7 +334,7 @@ function showSelectFund() {
 		showdelclient();
 	}
 	
-	$("#clientsearchameid").val("");
+//	$("#clientsearchameid").val("");
 	
 	
 }
@@ -462,7 +370,7 @@ function showfund(FundState) {
 				'<div class="group-title"><font>已买入基金表</font>'+ 
 				"<div id=butclient style='height:25px;width:350px;float:right;margin-top:-20px; margin-left:900px;'>" +
 				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='sellfund()'>卖出</div>"+
-				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='valuationfund()'>估值</div>"+
+				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='showfundvaluation()'>估值</div>"+
 //				"<div class=clientbut  style=' cursor:pointer; position: relative;' onclick='updateclient()'>修改</div>"+
 //				"<div class=clientbut  style=' cursor:pointer; position: relative;' onclick='seeclient()'>查看</div>"+
 //				"<div class=clientbut  style=' cursor:pointer; position: relative;' onclick='delclient()'>删除</div>"+
@@ -602,84 +510,4 @@ function showfund(FundState) {
 }
 
 
-
-
-
-function changeTrColorone(obj){    
-
-	    var _table=obj.parentNode;
-
-	    for (var i=0;i<_table.rows.length;i++){
-
-
-	    }    
-	    var x=69;
-	    var y=205;
-	    var z=195;
-	    obj.style.backgroundColor=setColor(x, y, z);
-
-	}
-
-
-var curtab = null;
-function do_onclick(tab){
-	 if(curtab==tab){
-		tab.style.backgroundColor =setColor(232,251,250);
-		curtab = null;
-	 }else{
-		 var x=69;
-		 var y=205;
-  	     var z=195;
-    	 tab.style.backgroundColor = setColor(x, y, z);
-    	 
-         if(curtab != null) curtab.style.backgroundColor = setColor(232,251,250);
-         curtab = tab;
-	 }
-	
-}
-
-function do_blcclick(tab) {
-	 tab.style.backgroundColor = setColor(255, 255, 255);
-	 curtab=null;
-}
-
-function setColor(x,y,z){
-		return "#"  + x.toString(16) + y.toString(16) + z.toString(16);
-		}
-function changeTrColortwo(obj) {
-	  var _table=obj.parentNode;
-
-    for (var i=0;i<_table.rows.length;i++){
-
-        _table.rows[i].style.backgroundColor=setColor(232,251,250);
-
-    }    
-	var x=69;
-    var y=205;
-    var z=195;
-    obj.style.backgroundColor=setColor(232,251,250);
-  if(curtab != null) curtab.style.backgroundColor = setColor(x, y, z);
-}
-
- 
-
- Date.prototype.format = function (format) {
-            var args = {
-                "M+": this.getMonth() + 1,
-                "d+": this.getDate(),
-                "h+": this.getHours(),
-                "m+": this.getMinutes(),
-                "s+": this.getSeconds(),
-                "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
-                "S": this.getMilliseconds()
-            };
-            if (/(y+)/.test(format))
-                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-            for (var i in args) {
-                var n = args[i];
-                if (new RegExp("(" + i + ")").test(format))
-                    format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
-            }
-            return format;
-        };
 

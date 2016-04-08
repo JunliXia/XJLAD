@@ -137,4 +137,39 @@ public class CDaoFrameImpl implements IDaoFrame {
 		CEntityFund findResult=cDaoFund.queryFundByFundId(cEntityFund);
 		return findResult;
 	}
+	
+	/**
+	 * 序号：fund:7
+	 * 功能：通过基金名跟基金代码得到用户自己的特定基金数
+	 * 参数：CEntityFund(FundName,FundCode,FundState,UserId)
+	 * 返回值:int
+	 */
+	public int queryUserFundNumberByFundNameCodeUserId(CEntityFund cEntityFund){
+		int count=cDaoFund.queryUserFundNumberByFundNameCodeUserId(cEntityFund);
+		return count;
+	}
+	
+	/**
+	 * 序号：fund:8
+	 * 功能：按用户号查询已买/已卖特定的基金
+	 * 参数：CEntityFund(FundName,FundCode,FundState,UserId)
+	 * 返回值:List<CEntityFund>
+	 */
+	public List<CEntityFund> queryUserFundByFundNameCodeUserId(final CEntityFund cEntityFund, final int page){
+		List<CEntityFund> findResult=cDaoFund.queryUserFundByFundNameCodeUserId(cEntityFund, page);
+		return findResult;
+	}
+	
+	
+	/**
+	 * 序号：fund:9
+	 * 功能：按用户号查询已买的基金名称与基金代码，所持基金数
+	 * 参数：CEntityFund
+	 * 返回值:List
+	 */
+	@SuppressWarnings("unchecked")
+	public List queryUserFundNameAndFundCodeNumber(CEntityFund cEntityFund){
+		List findResult=cDaoFund.queryUserFundNameAndFundCodeNumber(cEntityFund);
+		return findResult;
+	}
 }

@@ -52,6 +52,27 @@
     <servlet-name>WSellFund</servlet-name>
     <servlet-class>com.ad.servlet.WSellFund</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>WGetUserSpecificFundNumber</servlet-name>
+    <servlet-class>com.ad.servlet.WGetUserSpecificFundNumber</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>WGetUserSpecificFundInfo</servlet-name>
+    <servlet-class>com.ad.servlet.WGetUserSpecificFundInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>WGetUserFundBuyNameCodeNumber</servlet-name>
+    <servlet-class>com.ad.servlet.WGetUserFundBuyNameCodeNumber</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -91,6 +112,18 @@
   <servlet-mapping>
     <servlet-name>WSellFund</servlet-name>
     <url-pattern>/WSellFund</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WGetUserSpecificFundNumber</servlet-name>
+    <url-pattern>/WGetUserSpecificFundNumber</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WGetUserSpecificFundInfo</servlet-name>
+    <url-pattern>/WGetUserSpecificFundInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WGetUserFundBuyNameCodeNumber</servlet-name>
+    <url-pattern>/WGetUserFundBuyNameCodeNumber</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>jsp/login.jsp</welcome-file>
