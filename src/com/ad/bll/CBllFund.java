@@ -140,4 +140,16 @@ public class CBllFund {
 		return findResult;
 	}
 	
+	/**
+	 * 序号：fundmodule:9
+	 * 功能：根据基金号删除基金
+	 * 参数：CEntityFund
+	 * 返回值:boolean
+	 */
+	public boolean delFund(CEntityFund cEntityFund){
+		boolean bisDel=iDaoFrame.delFundByFundId(cEntityFund);
+		return bisDel;
+	}
+	
+	
 }

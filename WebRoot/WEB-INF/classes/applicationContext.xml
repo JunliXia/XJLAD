@@ -18,8 +18,11 @@
 
 
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/assectsdnalysis" />
-		<property name="username" value="root" />
+<!--		<property name="url" value="jdbc:mysql://localhost:3306/assectsdnalysis" />-->
+<!--		<property name="username" value="root" />-->
+<!--		<property name="password" value="123456" />-->
+		<property name="url" value="jdbc:mysql://sxqcjrmqhcuv.rds.sae.sina.com.cn:29338/assectsdnalysis" />
+		<property name="username" value="xiajunli" />
 		<property name="password" value="123456" />
 	</bean>
 

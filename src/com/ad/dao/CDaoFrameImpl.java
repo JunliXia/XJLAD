@@ -172,4 +172,15 @@ public class CDaoFrameImpl implements IDaoFrame {
 		List findResult=cDaoFund.queryUserFundNameAndFundCodeNumber(cEntityFund);
 		return findResult;
 	}
+	
+	/**
+	 * 序号：fund:10
+	 * 功能：根据基金号删除基金
+	 * 参数：CEntityFund(FundId)
+	 * 返回值:boolean
+	 */
+	public boolean delFundByFundId(CEntityFund cEntityFund){
+		boolean bisDel=cDaoFund.delFundByFundId(cEntityFund);
+		return bisDel;
+	}
 }

@@ -195,9 +195,6 @@ public class CDaoFund extends SuperDAO{
 	}
 	
 	
-	
-	
-	
 	/**
 	 * 序号：fund:9
 	 * 功能：按用户号查询已买的基金名称与基金代码，所持基金数
@@ -213,8 +210,26 @@ public class CDaoFund extends SuperDAO{
 		return findRList;
 	}
 	
-	
-	
+	/**
+	 * 序号：fund:10
+	 * 功能：根据基金号删除基金
+	 * 参数：CEntityFund(FundId)
+	 * 返回值:boolean
+	 */
+	public boolean delFundByFundId(CEntityFund cEntityFund){
+		CEntityFund aimFund=(CEntityFund)this.getHibernateTemplate().get(CEntityFund.class, cEntityFund.getFundId());
+		
+		boolean bisDel=false;
+		try {
+			this.getHibernateTemplate().delete(aimFund);
+			bisDel=true;
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return bisDel;
+	}
 	
 	
 	

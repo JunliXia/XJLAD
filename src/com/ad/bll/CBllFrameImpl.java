@@ -166,4 +166,17 @@ public class CBllFrameImpl implements IBllFrame{
 		List findResult=cBllFund.getUserFundNameCodeNumber(cEntityFund);
 		return findResult;
 	}
+	
+	
+	/**
+	 * 序号：fundmodule:9
+	 * 功能：根据基金号删除基金
+	 * 参数：CEntityFund
+	 * 返回值:boolean
+	 */
+	public boolean delFund(CEntityFund cEntityFund){
+		boolean bisDel=cBllFund.delFund(cEntityFund);
+		return bisDel;
+		
+	}
 }

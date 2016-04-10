@@ -86,6 +86,7 @@ function valuationfundOk() {
 	             '<th>基金净值</th>'+
 	             '<th>基金买入日期</th>'+
 	             '<th>基金买入手续费</th>'+
+	             '<th>估值净值</th>'+
 	             '<th>估值盈利率</th>'+
 	             '<th>估值盈利金额</th>'+
 	             '<th>估值金额</th>'+
@@ -130,6 +131,7 @@ function valuationfundOk() {
      			    '<th style="font-weight: normal">'+outjson[i].fundNetValue+'</th>'+
      			    '<th style="font-weight: normal">'+outjson[i].fundBuyDate+'</th>'+
      			    '<th style="font-weight: normal">'+outjson[i].fundBuyFee+'</th>'+
+     			    '<th style="font-weight: normal">'+(FundYesterdayNetValue*(parseFloat(one)+parseFloat(FundTodayGains))).toFixed(4)+'</th>'+
      			    '<th style="font-weight: normal">'+valuationgainsrate.toFixed(4)+'</th>'+
      			    '<th style="font-weight: normal">'+valuationprofitamount.toFixed(4)+'</th>'+
      			    '<th style="font-weight: normal">'+valuationamount.toFixed(4)+'</th>'+
@@ -151,8 +153,8 @@ function valuationfundOk() {
 		            
 		            $.getJSON("./WGetUserSpecificFundInfo",{UserId:UserId,page:p,FundState:0,FundName:FundName,FundCode:FundCode},function(outjson){
 		            	for ( var i = 0; i < outjson.length; i++) {
-		             		//估值金额=（昨日净值*（1+今日涨幅））*基金份额-基金金额-基金买入手续费
-		             		var valuationamount=(FundYesterdayNetValue*(1+FundTodayGains-FundFeeRate))*outjson[i].fundShares-outjson[i].fundAmount-outjson[i].fundBuyFee;
+		            		//估值金额=（昨日净值*（1+今日涨幅））*基金份额
+		            		var valuationamount=(FundYesterdayNetValue*(parseFloat(one)+parseFloat(FundTodayGains)))*outjson[i].fundShares;
 		             		//估值盈利金额=估值金额*（1-手续费率）-基金金额-基金买入手续费
 		             		var valuationprofitamount=valuationamount*(1-FundFeeRate)-outjson[i].fundAmount-outjson[i].fundBuyFee;
 		             		//估值盈利率=估值盈利金额/(基金金额+基金买入手续费)
@@ -166,6 +168,7 @@ function valuationfundOk() {
 		             			    '<th style="font-weight: normal">'+outjson[i].fundNetValue+'</th>'+
 		             			    '<th style="font-weight: normal">'+outjson[i].fundBuyDate+'</th>'+
 		             			    '<th style="font-weight: normal">'+outjson[i].fundBuyFee+'</th>'+
+		             			   '<th style="font-weight: normal">'+(FundYesterdayNetValue*(parseFloat(one)+parseFloat(FundTodayGains))).toFixed(4)+'</th>'+
 		             			    '<th style="font-weight: normal">'+valuationamount+'</th>'+
 		             			    '<th style="font-weight: normal">'+valuationprofitamount+'</th>'+
 		             			    '<th style="font-weight: normal">'+valuationgainsrate+'</th>'+

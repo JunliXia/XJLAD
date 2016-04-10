@@ -109,5 +109,12 @@ public interface IBllFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	public List getUserFundNameCodeNumber(CEntityFund cEntityFund);
+	/**
+	 * 序号：fundmodule:9
+	 * 功能：根据基金号删除基金
+	 * 参数：CEntityFund
+	 * 返回值:boolean
+	 */
+	public boolean delFund(CEntityFund cEntityFund);
 	
 }

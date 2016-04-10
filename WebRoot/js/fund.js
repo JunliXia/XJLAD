@@ -29,9 +29,9 @@ $(document).ready(function() {
 	//获得基金数
 	getFundNumber(FundStateBuy);
 
-	setTimeout(showmainfundtitle,500);
-	setTimeout(showfundouttime(FundStateBuy),500);
-	setTimeout(showfundPageOneouttime(FundStateBuy),500);
+	setTimeout(showmainfundtitle,100);
+	setTimeout(showfundouttime(FundStateBuy),100);
+	setTimeout(showfundPageOneouttime(FundStateBuy),100);
 	
 	
 	$.getJSON("./WGetFundNameAndCoce",{
@@ -121,6 +121,9 @@ function getFundNumber(FundState) {
 }
 
 
+function seefund() {
+	alert("还没想好")
+}
 
 function showmainfundtitle() {
 
@@ -131,9 +134,9 @@ function showmainfundtitle() {
  			"<div  style=' margin-left:400px;margin-top:5px;'><font>欢迎"+UserName+"</font></div>"+
  			"<div id=attenss style='height:25px;width:400px;float:right;margin-top:-10px; margin-left:700px;'>" +
  			
- 				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='updateclient()'>修改</div>"+
-				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='seeclient()'>查看</div>"+
-				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='delclient()'>删除</div>"+
+ 				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='updatefund()'>修改</div>"+
+				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='seefund()'>查看</div>"+
+				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='delfund()'>删除</div>"+
 				"<div class=usebut  style=' cursor:pointer; position: relative;' onclick='addfund()'>增加</div>"+
 				"<div class=usebut  style=' cursor:pointer; position: relative; margin-left:50px;'> <select id=selectID onchange='showSelectFund()' class=useselect style='height:25px;'><option value='1'>已买入</option><option value='2'>已卖出</option><option value='3'>总基金</option><option value='4'>待定</option></select></div> "+
  			
@@ -144,7 +147,94 @@ function showmainfundtitle() {
 	
 }
 
+function delfundOk() {
+	var FundId=$("#fundId").val();
+	$.getJSON("./WDelFund",{
+		FundId:FundId,
+	},function(outjson){
+		if(outjson.check){
+			alert("成功")
+			
+			
+		}else{
+			alert("失败")
+		}
+		closepage();
+		showback();
+	
+	})
+}
 
+
+function delfund() {
+	var x=curtab;
+	if(x==null){
+		alert("请选择要删除的基金")
+	}else{
+		
+	$(".shadow").show();
+	$(".pagehead font").html("删除基金")
+	$(".showpage").css("width","280px");
+	$(".showpage").css("height","170px");
+	$(".showpage").css("margin-left","600px");
+	$(".pagemain").html("<div class=userset>"+
+  				"<div><a>基金号:</a><input id=fundId disabled='disabled' type='text' style='margin-left: 29px;'value='"+$(x).find("th").eq(0).html()+"' /></div>"+
+  				"<div><a>基金名:</a><input id=wtf disabled='disabled' type='text' style='margin-left: 29px;' value='"+$(x).find("th").eq(1).html()+"'/></div>"+
+  				"<div><a>基金代码：</a><input disabled='disabled' type='text' value='"+$(x).find("th").eq(2).html()+"'/></div>"+
+//  				"<div><a>基金份额：</a><input id=fundsharesId disabled='disabled' type='text' value='"+$(x).find("th").eq(4).html()+"'/></div>"+
+//  				"<div><a>卖出时间：</a><input class='inadress' id='fundselldateId' onclick=SelectDate(this,\'yyyy-MM-dd\') type='text'/></div>"+
+//  				"<div><a>卖出净值：</a><input  type='text' id='fundsellnetvalueId'/></div>"+
+//  				"<div><a>手续费用：</a><input  type='text' id='fundsellfeeId'/></div>"+
+  	  			
+  				"<div style='margin-left: 30px;margin-top: 10px;'><button onclick='delfundOk()' class=but1>确定</button><button class=but1 onclick='closepage()'>取消</button></div>"+
+  				"</div>");
+	
+	}
+}
+
+function updatefund() {
+	var x=curtab;
+	if(x==null){
+		alert("请选择需要修改的基金")
+	}else{
+		
+	$(".shadow").show();
+	$(".pagehead font").html("修改基金")
+	$(".showpage").css("width","280px");
+	$(".showpage").css("height","330px");
+	$(".showpage").css("margin-left","600px");
+	$(".pagemain").html("<div class=userset>"+
+  				"<div><a>基金号:</a><input id=fundId disabled='disabled' type='text' style='margin-left: 29px;'value='"+$(x).find("th").eq(0).html()+"' /></div>"+
+  				"<div><a>基金名:</a><input id=wtf disabled='disabled' type='text' style='margin-left: 29px;' value='"+$(x).find("th").eq(1).html()+"'/></div>"+
+  				"<div><a>基金代码：</a><input disabled='disabled' type='text' value='"+$(x).find("th").eq(2).html()+"'/></div>"+
+  				"<div><a>基金份额：</a><input id=fundsharesId  type='text' value='"+$(x).find("th").eq(4).html()+"'/></div>"+
+  				"<div><a>基金净值：</a><input id=fundsharesId  type='text' value='"+$(x).find("th").eq(5).html()+"'/></div>"+
+  				"<div><a>买入时间：</a><input class='inadress' id='fundselldateId' onclick=SelectDate(this,\'yyyy-MM-dd\') type='text' value='"+$(x).find("th").eq(6).html()+"'/></div>"+
+  				"<div><a>手续费用：</a><input  type='text' id='fundsellnetvalueId' value='"+$(x).find("th").eq(7).html()+"'/></div>"+
+  				'<div>盈利点&nbsp&nbsp&nbsp：<select style="width:164px" class="inadress" id="fundprofitlimitId" ></select></div>'+
+  				'<div>止损点&nbsp&nbsp&nbsp：<select style="width:164px" class="inadress"  id="fundlosslimitId" ></select></div>'+
+
+  				"<div style='margin-left: 30px;margin-top: 10px;'><button onclick='delfundOk()' class=but1>确定</button><button class=but1 onclick='closepage()'>取消</button></div>"+
+  				"</div>");
+	
+	
+	var profitStr="<option value ='0'>0%</option>";
+	for(var i=1;i<101;i++){
+		profitStr=profitStr+"<option value ="+i+">"+i+"%</option>";
+	
+	}
+	
+	$("#fundprofitlimitId").append(profitStr);
+	$("#fundlosslimitId").append(profitStr);
+	
+	var profitpoint=$(x).find("th").eq(8).html();
+	var losspoint=$(x).find("th").eq(9).html();
+	$("#fundprofitlimitId").find("option").eq(profitpoint).attr("selected","selected");
+	$("#fundlosslimitId").find("option").eq(losspoint).attr("selected","selected");
+
+	
+	}
+}
 
 
 function addfund() {
@@ -255,7 +345,7 @@ function sellfund() {
 	}else{
 		
 	$(".shadow").show();
-	$(".pagehead font").html("分配客户")
+	$(".pagehead font").html("删除基金")
 	$(".showpage").css("width","280px");
 	$(".showpage").css("height","270px");
 	$(".showpage").css("margin-left","600px");
@@ -277,7 +367,7 @@ function sellfund() {
 
 
 $(function searchfundname () {
-	setTimeout(searchfundname, 1000);
+	setTimeout(searchfundname, 100);
    var resarray=new Array();
    resarray=arrFundName;
   
@@ -321,13 +411,13 @@ function showSelectFund() {
 	var selectId=$("#selectID").val();
 	if(selectId==1){
 		getFundNumber(FundStateBuy);
-		setTimeout(showfundouttime(FundStateBuy),500);
-		setTimeout(showfundPageOneouttime(FundStateBuy),500);
+		setTimeout(showfundouttime(FundStateBuy),100);
+		setTimeout(showfundPageOneouttime(FundStateBuy),100);
 
 	}else if(selectId==2){
 		getFundNumber(FundStateSell);
-		setTimeout(showfundouttime(FundStateSell),500);
-		setTimeout(showfundPageOneouttime(FundStateSell),500);
+		setTimeout(showfundouttime(FundStateSell),100);
+		setTimeout(showfundPageOneouttime(FundStateSell),100);
 	}else if(selectId==3){
 		shownocheck();
 	}else if(selectId==4){
@@ -344,13 +434,13 @@ function showback() {
 	var seleed=$("#selectID").val();
 		if(seleed==1){
 			getFundNumber(FundStateBuy);
-			setTimeout(showfundouttime(FundStateBuy),500);
-			setTimeout(showfundPageOneouttime(FundStateBuy),500);
+			setTimeout(showfundouttime(FundStateBuy),100);
+			setTimeout(showfundPageOneouttime(FundStateBuy),100);
 
 		}else if(seleed==2){
 			getFundNumber(FundStateSell);
-			setTimeout(showfundouttime(FundStateSell),500);
-			setTimeout(showfundPageOneouttime(FundStateSell),500);
+			setTimeout(showfundouttime(FundStateSell),100);
+			setTimeout(showfundPageOneouttime(FundStateSell),100);
 		}else if(seleed==3){
 			shownocheck();
 		}else if(seleed==4){

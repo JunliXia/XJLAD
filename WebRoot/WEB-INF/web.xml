@@ -70,6 +70,13 @@
     <servlet-name>WGetUserFundBuyNameCodeNumber</servlet-name>
     <servlet-class>com.ad.servlet.WGetUserFundBuyNameCodeNumber</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>WDelFund</servlet-name>
+    <servlet-class>com.ad.servlet.WDelFund</servlet-class>
+  </servlet>
+
 
 
 
@@ -124,6 +131,10 @@
   <servlet-mapping>
     <servlet-name>WGetUserFundBuyNameCodeNumber</servlet-name>
     <url-pattern>/WGetUserFundBuyNameCodeNumber</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WDelFund</servlet-name>
+    <url-pattern>/WDelFund</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>jsp/login.jsp</welcome-file>
