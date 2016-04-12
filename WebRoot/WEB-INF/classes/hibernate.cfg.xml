@@ -10,13 +10,14 @@
 		<property name="hbm2ddl.auto">update</property>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-<!--		<property name="connection.url">jdbc:mysql://localhost:3306/assectsdnalysis</property>-->
-<!--		<property name="connection.username">root</property>-->
-<!--		<property name="connection.password">123456</property>-->
-		<property name="connection.url">jdbc:mysql://sxqcjrmqhcuv.rds.sae.sina.com.cn:29338/assectsdynalysis</property>
-		<property name="connection.username">xiajunli</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/assectsdnalysis</property>
+		<property name="connection.username">root</property>
 		<property name="connection.password">123456</property>
-		
+<!--		<property name="connection.url">jdbc:mysql://sxqcjrmqhcuv.rds.sae.sina.com.cn:29338/assectsdynalysis</property>-->
+<!--		<property name="connection.username">xiajunli</property>-->
+<!--		<property name="connection.password">123456</property>-->
+
+
 		<!-- Disable the second-level cache  -->
 		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 
